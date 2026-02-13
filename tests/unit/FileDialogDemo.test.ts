@@ -124,4 +124,15 @@ describe('FileDialogDemo', () => {
 
     expect(wrapper.text()).toContain('Dialog failed')
   })
+
+  it('falls back to String(e) when error has no message', async () => {
+    vi.mocked(open).mockResolvedValue('/path/to/file.txt')
+    vi.mocked(commands.readTextFile).mockRejectedValue('raw string error')
+    const wrapper = mount(FileDialogDemo)
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('raw string error')
+  })
 })
