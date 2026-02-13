@@ -164,24 +164,24 @@ oxidedock/
 Runs on every push to `main` and on pull requests:
 
 1. **Lint** — ESLint, Oxlint, Prettier check
-2. **Test** — Vitest unit tests, Playwright e2e (chromium), Rust tests with coverage
-3. **Audit** — `cargo audit` for Rust dependency vulnerabilities
-4. **Build** — Tauri build on Linux, macOS, and Windows (main branch only)
+2. **Rust Lint** — Clippy + Rustfmt (Linux only)
+3. **Test** — Vitest unit tests, Playwright e2e (chromium), Rust tests on all platforms with coverage on Linux
+4. **Audit** — `cargo audit` runs daily and on Cargo dependency changes (separate workflow)
+5. **Build** — Linux smoke build (main branch only); full cross-platform build happens at release time
 
-### Release Pipeline (`release.yml`)
+### Release Pipeline
 
-Triggered by pushing a version tag:
+Releases are fully automated via [release-please](https://github.com/googleapis/release-please):
 
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
+1. Push conventional commits to `main` (`fix:`, `feat:`, `feat!:`)
+2. Release-please opens a PR bumping versions and updating `CHANGELOG.md`
+3. Merging the PR tags the release, triggering cross-platform builds
+4. A draft GitHub Release is created with platform binaries:
+   - Linux: `.deb`, `.AppImage`
+   - macOS: `.dmg` (Intel + Apple Silicon)
+   - Windows: `.msi`, `.exe`
 
-Builds binaries for all platforms and creates a draft GitHub Release with:
-
-- Linux: `.deb`, `.AppImage`
-- macOS: `.dmg` (Intel + Apple Silicon)
-- Windows: `.msi`, `.exe`
+Check release status with `make release-status`.
 
 ## Customization
 

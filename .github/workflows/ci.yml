@@ -77,36 +77,58 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(bun pm ls @playwright/test | grep @playwright/test | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
       # CI runs chromium only for speed; local `make test-e2e` uses all browsers from playwright.config.ts
       - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: bunx playwright install --with-deps chromium
 
       - name: Playwright
         run: bunx playwright test --project=chromium
 
-  cargo-audit:
-    runs-on: ubuntu-latest
+  rust-lint:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
+      - uses: oven-sh/setup-bun@v2
+
       - uses: dtolnay/rust-toolchain@stable
 
-      - uses: taiki-e/install-action@cargo-audit
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
 
-      - name: Cargo audit
-        run: cd src-tauri && cargo audit
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-  rust-checks:
+      - run: bun install --frozen-lockfile
+
+      - name: Clippy
+        run: cd src-tauri && cargo clippy -- -D warnings
+
+      - name: Rustfmt
+        run: cd src-tauri && cargo fmt -- --check
+
+  rust-test:
     strategy:
       fail-fast: false
       matrix:
         include:
           - platform: ubuntu-22.04
-            rust-targets: ''
           - platform: macos-latest
-            rust-targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
           - platform: windows-latest
-            rust-targets: ''
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -116,7 +138,6 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.rust-targets }}
           components: llvm-tools-preview
 
       - uses: swatinem/rust-cache@v2
@@ -130,12 +151,6 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - run: bun install --frozen-lockfile
-
-      - name: Clippy
-        run: cd src-tauri && cargo clippy -- -D warnings
-
-      - name: Rustfmt
-        run: cd src-tauri && cargo fmt -- --check
 
       - name: Install cargo-llvm-cov
         if: matrix.platform == 'ubuntu-22.04'
@@ -151,34 +166,20 @@ jobs:
 
   build:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [lint, test-unit, test-e2e, rust-checks, cargo-audit]
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: ubuntu-22.04
-            rust-targets: ''
-          - platform: macos-latest
-            rust-targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
-          - platform: windows-latest
-            rust-targets: ''
-
-    runs-on: ${{ matrix.platform }}
+    needs: [lint, test-unit, test-e2e, rust-lint, rust-test]
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - uses: oven-sh/setup-bun@v2
 
       - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.rust-targets }}
 
       - uses: swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
 
       - name: Install Linux dependencies
-        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf

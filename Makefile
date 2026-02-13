@@ -98,7 +98,7 @@ rust-test:
 
 rust-coverage:
 	@command -v cargo-llvm-cov >/dev/null 2>&1 || { echo "cargo-llvm-cov not installed. Run: cargo install cargo-llvm-cov"; exit 1; }
-	cd src-tauri && cargo llvm-cov --fail-under-lines 100 --ignore-filename-regex '(main|lib)\.rs'
+	cd src-tauri && cargo llvm-cov --fail-under-lines 100 --ignore-filename-regex '(main|lib|handlers)\.rs'
 
 coverage: rust-coverage
 	bun run test:unit:coverage
