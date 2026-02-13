@@ -1,12 +1,15 @@
 use crate::error::{AppError, AppResult};
+use log::info;
 
 #[tauri::command]
 pub fn greet(name: &str) -> String {
+    info!("greet called with name={}", name);
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
 #[tauri::command]
 pub fn greet_checked(name: &str) -> AppResult<String> {
+    info!("greet_checked called with name={}", name);
     if name.trim().is_empty() {
         return Err(AppError::Validation("Name cannot be empty".to_string()));
     }
