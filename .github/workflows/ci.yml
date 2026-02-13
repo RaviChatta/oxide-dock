@@ -130,7 +130,7 @@ jobs:
 
       - name: Rust tests with coverage
         if: matrix.platform == 'ubuntu-22.04'
-        run: cd src-tauri && cargo llvm-cov --fail-under-lines 100 --ignore-filename-regex '(main|lib)\.rs'
+        run: cd src-tauri && cargo llvm-cov --fail-under-lines 100 --ignore-filename-regex '(main|lib|handlers)\.rs'
 
       - name: Rust tests
         if: matrix.platform != 'ubuntu-22.04'

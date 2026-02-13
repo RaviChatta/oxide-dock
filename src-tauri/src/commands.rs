@@ -1,32 +1,32 @@
 use crate::error::{AppError, AppResult};
 use crate::state::AppState;
-use log::info;
 use serde::Serialize;
 
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct AppInfo {
     pub name: String,
     pub visit_count: u32,
 }
 
-#[tauri::command]
+#[derive(Debug, Serialize)]
+pub struct ReadFileResult {
+    pub path: String,
+    pub content: String,
+    pub size_bytes: usize,
+}
+
 pub fn greet(name: &str) -> String {
-    info!("greet called with name={}", name);
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
-#[tauri::command]
 pub fn greet_checked(name: &str) -> AppResult<String> {
-    info!("greet_checked called with name={}", name);
     if name.trim().is_empty() {
         return Err(AppError::Validation("Name cannot be empty".to_string()));
     }
     Ok(format!("Hello, {}! You've been greeted from Rust!", name))
 }
 
-#[tauri::command]
-pub fn get_app_info(state: tauri::State<'_, AppState>) -> AppResult<AppInfo> {
-    info!("get_app_info called");
+pub fn get_app_info(state: &AppState) -> AppResult<AppInfo> {
     let mut count = state
         .visit_count
         .lock()
@@ -38,16 +38,7 @@ pub fn get_app_info(state: tauri::State<'_, AppState>) -> AppResult<AppInfo> {
     })
 }
 
-#[derive(Debug, Serialize)]
-pub struct ReadFileResult {
-    pub path: String,
-    pub content: String,
-    pub size_bytes: usize,
-}
-
-#[tauri::command]
 pub fn read_text_file(path: String) -> AppResult<ReadFileResult> {
-    info!("read_text_file called with path={}", path);
     let content = std::fs::read_to_string(&path)
         .map_err(|e| AppError::FileSystem(format!("Failed to read {}: {}", path, e)))?;
     let size_bytes = content.len();
@@ -98,6 +89,38 @@ mod tests {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert!(matches!(err, AppError::Validation(_)));
+    }
+
+    #[test]
+    fn test_get_app_info() {
+        let state = AppState::default();
+        let result = get_app_info(&state);
+        assert!(result.is_ok());
+        let info = result.unwrap();
+        assert_eq!(info.name, "OxideDock");
+        assert_eq!(info.visit_count, 1);
+    }
+
+    #[test]
+    fn test_get_app_info_increments() {
+        let state = AppState::default();
+        let _ = get_app_info(&state).unwrap();
+        let info = get_app_info(&state).unwrap();
+        assert_eq!(info.visit_count, 2);
+    }
+
+    #[test]
+    fn test_get_app_info_poisoned_mutex() {
+        let state = AppState::default();
+        // Poison the mutex by panicking while holding it
+        let _ = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+            let _lock = state.visit_count.lock().unwrap();
+            panic!("poison the mutex");
+        }));
+        let result = get_app_info(&state);
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(matches!(err, AppError::Internal(_)));
     }
 
     #[test]
