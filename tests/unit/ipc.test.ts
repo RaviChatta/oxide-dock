@@ -14,14 +14,14 @@ describe('invokeCommand', () => {
 
   it('forwards to tauri invoke with correct args', async () => {
     vi.mocked(invoke).mockResolvedValue('result')
-    const result = await invokeCommand<string>('test_cmd', { key: 'value' })
-    expect(invoke).toHaveBeenCalledWith('test_cmd', { key: 'value' })
+    const result = await invokeCommand<string>('greet', { key: 'value' })
+    expect(invoke).toHaveBeenCalledWith('greet', { key: 'value' })
     expect(result).toBe('result')
   })
 
   it('propagates errors from invoke', async () => {
     vi.mocked(invoke).mockRejectedValue({ code: 'VALIDATION', message: 'bad input' })
-    await expect(invokeCommand<string>('test_cmd')).rejects.toEqual({
+    await expect(invokeCommand<string>('greet')).rejects.toEqual({
       code: 'VALIDATION',
       message: 'bad input',
     })

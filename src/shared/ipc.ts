@@ -23,9 +23,12 @@ export interface ReadFileResult {
   size_bytes: number
 }
 
+// Known Tauri command names — must match handlers in src-tauri/src/handlers.rs
+export type CommandName = 'greet' | 'greet_checked' | 'get_app_info' | 'read_text_file'
+
 // Type-safe invoke wrapper
 export async function invokeCommand<TRes>(
-  cmd: string,
+  cmd: CommandName,
   args?: Record<string, unknown>,
 ): Promise<TRes> {
   return invoke<TRes>(cmd, args)
