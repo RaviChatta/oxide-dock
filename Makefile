@@ -107,7 +107,8 @@ rust-coverage:
 coverage: rust-coverage
 	bun run test:unit:coverage
 
-# CI
+# Runs targets sequentially (stops at first failure). GitHub CI runs in parallel.
+# If you want all failures at once, run individual targets separately.
 ci: lint format-check test-unit test-e2e rust-test rust-coverage build
 
 # Setup & Bootstrap
