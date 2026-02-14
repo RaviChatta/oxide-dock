@@ -1,8 +1,8 @@
 import { invoke } from '@tauri-apps/api/core'
 
 // Structured error from Rust AppError serialization
-export interface AppError {
-  code: string
+export type AppError = {
+  code: 'VALIDATION' | 'INTERNAL'
   message: string
 }
 
@@ -12,7 +12,7 @@ export type GreetRequest = {
 }
 
 // Response types — mirror Rust response structs
-export interface AppInfo {
+export type AppInfo = {
   name: string
   visit_count: number
 }

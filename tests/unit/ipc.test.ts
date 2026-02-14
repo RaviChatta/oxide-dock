@@ -76,8 +76,8 @@ describe('commands.getAppInfo', () => {
 
 describe('AppError type', () => {
   it('has the expected shape', () => {
-    const error: AppError = { code: 'FILE_SYSTEM', message: 'not found' }
-    expect(error.code).toBe('FILE_SYSTEM')
+    const error: AppError = { code: 'VALIDATION', message: 'not found' }
+    expect(error.code).toBe('VALIDATION')
     expect(error.message).toBe('not found')
   })
 })
