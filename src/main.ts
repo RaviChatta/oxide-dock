@@ -11,13 +11,15 @@ app.use(createPinia())
 app.use(router)
 
 app.config.errorHandler = (err) => {
+  const msg = err instanceof Error ? err.message : String(err)
   console.error('Unhandled Vue error:', err)
-  logError(`Unhandled Vue error: ${err}`).catch(() => {})
+  logError(`Unhandled Vue error: ${msg}`).catch(() => {})
 }
 
 window.addEventListener('unhandledrejection', (event) => {
+  const msg = event.reason instanceof Error ? event.reason.message : String(event.reason)
   console.error('Unhandled promise rejection:', event.reason)
-  logError(`Unhandled promise rejection: ${event.reason}`).catch(() => {})
+  logError(`Unhandled promise rejection: ${msg}`).catch(() => {})
 })
 
 app.mount('#app')
