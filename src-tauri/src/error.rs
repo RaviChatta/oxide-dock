@@ -7,6 +7,7 @@ pub enum AppError {
     Validation(String),
 
     #[error("File operation failed: {0}")]
+    #[allow(dead_code)]
     FileSystem(String),
 
     #[error("Internal error: {0}")]

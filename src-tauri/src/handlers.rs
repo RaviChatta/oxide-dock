@@ -20,9 +20,3 @@ pub fn get_app_info(state: tauri::State<'_, AppState>) -> AppResult<commands::Ap
     info!("get_app_info called");
     commands::get_app_info(&state)
 }
-
-#[tauri::command]
-pub fn read_text_file(path: String) -> AppResult<commands::ReadFileResult> {
-    info!("read_text_file called with path={}", path);
-    commands::read_text_file(path)
-}
